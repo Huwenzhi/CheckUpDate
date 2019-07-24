@@ -189,7 +189,7 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initData() {
-        mUpdateApp = (UpdateAppBean) getArguments().getSerializable(UpdateAppManager.INTENT_KEY);
+        mUpdateApp = (UpdateAppBean) getArguments().getParcelable(UpdateAppManager.INTENT_KEY);
         //设置主题色
         initTheme();
 
