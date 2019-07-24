@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Map;
 
-public interface HttpManager extends Serializable {
+public interface HttpManager  {
     /**
      * 异步get
      *
@@ -45,7 +45,7 @@ public interface HttpManager extends Serializable {
     /**
      * 下载回调
      */
-    interface FileCallback extends Serializable{
+    interface FileCallback {
         /**
          * 进度
          *
@@ -77,7 +77,7 @@ public interface HttpManager extends Serializable {
     /**
      * 网络请求回调
      */
-    interface Callback extends Serializable{
+    interface Callback {
         /**
          * 结果回调
          *

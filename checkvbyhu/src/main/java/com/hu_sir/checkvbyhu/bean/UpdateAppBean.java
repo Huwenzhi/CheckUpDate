@@ -1,5 +1,7 @@
 package com.hu_sir.checkvbyhu.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 
 import com.hu_sir.checkvbyhu.listener.HttpManager;
@@ -9,8 +11,8 @@ import java.io.Serializable;
 /**
  * 版本信息
  */
-public class UpdateAppBean implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class UpdateAppBean implements Parcelable {
+
 
     /**
      * update : Yes
@@ -51,6 +53,40 @@ public class UpdateAppBean implements Serializable {
     private boolean mShowCanLetter;
     private boolean mDismissNotificationProgress;
     private boolean mOnlyWifi;
+
+    public UpdateAppBean() {
+    }
+
+    protected UpdateAppBean(Parcel in) {
+        update = in.readString();
+        new_version = in.readString();
+        apk_file_url = in.readString();
+        update_log = in.readString();
+        update_def_dialog_title = in.readString();
+        target_size = in.readString();
+        constraint = in.readByte() != 0;
+        new_md5 = in.readString();
+        delta = in.readByte() != 0;
+        origin_res = in.readString();
+        targetPath = in.readString();
+        mHideDialog = in.readByte() != 0;
+        mShowIgnoreVersion = in.readByte() != 0;
+        mShowCanLetter = in.readByte() != 0;
+        mDismissNotificationProgress = in.readByte() != 0;
+        mOnlyWifi = in.readByte() != 0;
+    }
+
+    public static final Creator<UpdateAppBean> CREATOR = new Creator<UpdateAppBean>() {
+        @Override
+        public UpdateAppBean createFromParcel(Parcel in) {
+            return new UpdateAppBean(in);
+        }
+
+        @Override
+        public UpdateAppBean[] newArray(int size) {
+            return new UpdateAppBean[size];
+        }
+    };
 
     //是否隐藏对话框下载进度条,内部使用
     public boolean isHideDialog() {
@@ -203,4 +239,28 @@ public class UpdateAppBean implements Serializable {
         return this;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(update);
+        dest.writeString(new_version);
+        dest.writeString(apk_file_url);
+        dest.writeString(update_log);
+        dest.writeString(update_def_dialog_title);
+        dest.writeString(target_size);
+        dest.writeByte((byte) (constraint ? 1 : 0));
+        dest.writeString(new_md5);
+        dest.writeByte((byte) (delta ? 1 : 0));
+        dest.writeString(origin_res);
+        dest.writeString(targetPath);
+        dest.writeByte((byte) (mHideDialog ? 1 : 0));
+        dest.writeByte((byte) (mShowIgnoreVersion ? 1 : 0));
+        dest.writeByte((byte) (mShowCanLetter ? 1 : 0));
+        dest.writeByte((byte) (mDismissNotificationProgress ? 1 : 0));
+        dest.writeByte((byte) (mOnlyWifi ? 1 : 0));
+    }
 }
