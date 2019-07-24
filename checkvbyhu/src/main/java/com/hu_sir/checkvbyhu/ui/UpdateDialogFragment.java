@@ -45,6 +45,7 @@ import com.hu_sir.checkvbyhu.util.DrawableUtil;
 import com.hu_sir.checkvbyhu.view.NumberProgressBar;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * Created by Vector

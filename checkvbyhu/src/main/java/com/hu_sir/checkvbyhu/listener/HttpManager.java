@@ -77,7 +77,7 @@ public interface HttpManager extends Serializable {
     /**
      * 网络请求回调
      */
-    interface Callback {
+    interface Callback extends Serializable{
         /**
          * 结果回调
          *
